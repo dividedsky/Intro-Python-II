@@ -1,5 +1,6 @@
 # Implement a class to hold room information. This should have name and
 # description attributes.
+from termcolor import cprint
 
 
 class Room():
@@ -9,10 +10,10 @@ class Room():
         self.items = items
     
     def print_room(self):
-        print('****{}****'.format(self.name.upper()))
-        print(self.description)
+        cprint('****{}****'.format(self.name.upper()), 'red')
+        cprint(self.description, 'green')
 
         if len(self.items):
-            print('You see here:')
+            cprint('You see here:', 'yellow')
             for item in self.items:
-                print(item.name)
+                cprint(item.name, 'yellow')

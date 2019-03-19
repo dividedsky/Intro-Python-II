@@ -2,6 +2,7 @@
 
 
 def parser(command, player):
+    player.new_room = False
     length = len(command.split())
     # one-word commands
     if length == 1:
@@ -9,6 +10,8 @@ def parser(command, player):
             player.move(command + '_to')
         elif command == 'i':
             print(player.get_inv())
+        elif command == 'l':
+            player.room.print_room()
         else:
             print(f'I do not understand the command: {command}')
 

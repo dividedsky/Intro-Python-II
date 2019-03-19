@@ -5,7 +5,7 @@ class Item():
 
 
 class Torch(Item):
-    name = 'Torch'
+    name = 'torch'
     description = 'The flame flickers brightly'
 
     def __init__(self, name, description):

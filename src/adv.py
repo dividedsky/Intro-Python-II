@@ -1,3 +1,4 @@
+#!/usr/bin/python
 from room import Room
 from player import Player
 from parser import parser
@@ -56,13 +57,10 @@ player = Player(room['outside'])
 
 
 def main_loop():
-    player.room.print_room()
+    if player.new_room:
+        player.room.print_room()
     user_input = input('What would you like to do?').lower()
     parser(user_input, player)
-    # if user_input in 'nsew':
-    #     player.move(user_input + '_to')
-    # elif user_input == 'i':
-    #     print(player.get_inv())
 
 
 while True:
