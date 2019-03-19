@@ -3,6 +3,7 @@ from room import Room
 from player import Player
 from parser import parser
 from item import Torch
+from util import clear_screen
 
 # Declare all the rooms
 
@@ -58,8 +59,9 @@ player = Player(room['outside'])
 
 def main_loop():
     if player.new_room:
+        clear_screen()
         player.room.print_room()
-    user_input = input('What would you like to do?').lower()
+    user_input = input('What would you like to do?\n').lower()
     parser(user_input, player)
 
 

@@ -1,5 +1,6 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
+from termcolor import cprint
 
 
 class Player():
@@ -15,14 +16,13 @@ class Player():
             self.room = next
             self.new_room = True
         except AttributeError:
-            print('You cannot go that way!')
+            cprint('You cannot go that way!', red)
 
     def get_inv(self):
         return self.inventory if len(self.inventory) \
                 else 'Your inventory is empty'
 
     def get_item(self, item):
-        print(f'trying to pick up {item}')
         found = False
         # I'm sure there's a better way to do this...
         for i in self.room.items:
@@ -30,8 +30,22 @@ class Player():
                 self.room.items.remove(i)
                 self.inventory.append(i)
                 found = True
-                print(f'You pick up the {i.name} and stuff it in your sack')
+                cprint(f'You pick up the {i.name} '
+                       'and stuff it in your sack', 'green')
         if not found:
-            print(f'I do not see a {item} here')
+            cprint(f'I do not see a {item} here', 'red')
+
+    def drop_item(self, item):
+        dropped = False
+        for i in self.inventory:
+            if i.name == item:
+                self.room.items.append(i)
+                self.inventory.remove(i)
+                dropped = True
+                cprint(f'You have dropped {i.name}.' 
+                       'Hope you won\'t need that!', 'yellow')
+        if not dropped:
+            cprint(f'You can\'t drop what you never had...', 'red')
+
 
         
