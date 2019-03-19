@@ -55,8 +55,9 @@ player = Player(room['outside'])
 
 def main_loop():
     player.room.print_room()
-    user_input = input('What would you like to do?')
-
+    user_input = input('What would you like to do?').lower()
+    if user_input in 'nsew':
+        player.move(user_input + '_to')
 
 
 while True:
