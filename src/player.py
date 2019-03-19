@@ -10,7 +10,7 @@ class Player():
     def move(self, dir):
         try:
             next = getattr(self.room, dir)
-            print('next:', next)
+            # print('next:', next)
             self.room = next
         except AttributeError:
             print('You cannot go that way!')
@@ -20,8 +20,12 @@ class Player():
                 else 'Your inventory is empty'
 
     def get_item(self, item):
+        print(f'trying to pick up {item}')
         if item in self.room.items:
             self.room.items.remove(item)
             self.inventory.append(item)
+            print(f'You pick up the {item} and stuff it in your sack')
+        else:
+            print(f'I do not see a {item} here')
 
         

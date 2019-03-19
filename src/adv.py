@@ -1,11 +1,13 @@
 from room import Room
 from player import Player
+from parser import parser
+from item import Torch
 
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons", [Torch]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -56,10 +58,11 @@ player = Player(room['outside'])
 def main_loop():
     player.room.print_room()
     user_input = input('What would you like to do?').lower()
-    if user_input in 'nsew':
-        player.move(user_input + '_to')
-    elif user_input == 'i':
-        print(player.get_inv())
+    parser(user_input, player)
+    # if user_input in 'nsew':
+    #     player.move(user_input + '_to')
+    # elif user_input == 'i':
+    #     print(player.get_inv())
 
 
 while True:

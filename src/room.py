@@ -15,4 +15,4 @@ class Room():
         if len(self.items):
             print('You see here:')
             for item in self.items:
-                print(item)
+                print(item.name)
