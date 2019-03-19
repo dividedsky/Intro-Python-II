@@ -32,6 +32,7 @@ class Player():
                 found = True
                 cprint(f'You pick up the {i.name} '
                        'and stuff it in your sack', 'green')
+                i.on_take()
         if not found:
             cprint(f'I do not see a {item} here', 'red')
 
@@ -44,6 +45,7 @@ class Player():
                 dropped = True
                 cprint(f'You have dropped {i.name}.' 
                        'Hope you won\'t need that!', 'yellow')
+                i.on_drop()
         if not dropped:
             cprint(f'You can\'t drop what you never had...', 'red')
 
