@@ -11,3 +11,8 @@ class Room():
     def print_room(self):
         print('****{}****'.format(self.name.upper()))
         print(self.description)
+
+        if len(self.items):
+            print('You see here:')
+            for item in self.items:
+                print(item)

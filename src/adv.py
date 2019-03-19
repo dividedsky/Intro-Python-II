@@ -58,6 +58,8 @@ def main_loop():
     user_input = input('What would you like to do?').lower()
     if user_input in 'nsew':
         player.move(user_input + '_to')
+    elif user_input == 'i':
+        print(player.get_inv())
 
 
 while True:
