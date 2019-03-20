@@ -31,6 +31,7 @@ class Player(Person):
     def get_status(self):
         print(f"Hitpoints: {self.hitpoints}")
         print(f"attack: {self.att}")
+        print(f"defense: {self.defense}")
 
     def get_item(self, item):
         found = False
@@ -41,6 +42,7 @@ class Player(Person):
                 self.inventory.append(i)
                 found = True
                 # cprint(f"You pick up the {i.name} and stuff it in your sack", "green")
+                print(i)
                 i.on_take(self)
         if not found:
             cprint(f"I do not see a {item} here", "red")

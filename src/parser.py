@@ -18,10 +18,11 @@ def parser(command, player):
             print(f"I do not understand the command: {command}")
 
     # complex commands
-    elif length == 2:
+    elif length >= 2:
         args = command.split()
         verb = args[0]
-        noun = args[1]
+        noun = " ".join(args[1:])
+        print(noun)
         # pick up item
         if verb == "get" or verb == "take":
             player.get_item(noun)

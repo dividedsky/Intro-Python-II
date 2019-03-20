@@ -2,9 +2,9 @@
 from room import Room
 from player import Player
 from parser import parser
-from item import Torch, pancake
+from item import Torch, pancake, cake, pie, shield
 from util import clear_screen
-from monster import goblin, goblin2
+from monster import goblin, goblin2, dragon
 
 # Declare all the rooms
 
@@ -19,7 +19,7 @@ room = {
         "Foyer",
         """Dim light filters in from the south. Dusty
 passages run north and east.""",
-        [],
+        [cake],
         [goblin2],
     ),
     "overlook": Room(
@@ -38,7 +38,8 @@ to north. The smell of gold permeates the air.""",
         """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",
-        [],
+        [pie],
+        [dragon],
     ),
 }
 

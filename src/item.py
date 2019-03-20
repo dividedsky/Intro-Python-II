@@ -44,9 +44,8 @@ class Sword(Item):
 
 class Food(Item):
     def __init__(self, name, nutrition, description="It's just normal food"):
-        self.name = name
+        super().__init__(name, description)
         self.nutrition = nutrition
-        self.description = description
 
     def on_use(self, player):
         player.hitpoints += self.nutrition
@@ -54,4 +53,19 @@ class Food(Item):
         player.inventory.remove(self)
 
 
+class Armor(Item):
+    def __init__(self, name, description="some generic armor", armor_class=1):
+        super().__init__(name, description)
+        self.armor_class = armor_class
+
+    def on_take(self, player):
+        player.defense += self.armor_class
+        cprint(f"You eqip the ${self.name} and feel more robust", "green")
+
+
 pancake = Food("pancake", 5, "a delicious pancake")
+cake = Food("birthday cake", 10, "this cake is not a lie")
+pie = Food("apple pie", 10, "just like Mom made it")
+
+shield = Armor("rusty shield", "an old and battered shield", 10)
+gold = Item("pile of gold", "it's really quite a bit of gold")

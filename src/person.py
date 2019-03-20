@@ -42,3 +42,4 @@ class Person:
 
     def die(self):
         print(f"{self.name} has been defeated!")
+        del self

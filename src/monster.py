@@ -1,10 +1,11 @@
 import random
 from person import Person
-from item import Sword
+from item import Sword, shield, gold
 
 
 goblin = Person("goblin", 8, 1, 30, [Sword])
-goblin2 = Person("goblin", 10, 1, 40)
+goblin2 = Person("goblin", 10, 1, 40, [shield])
+dragon = Person("silver dragon", 20, 5, 80, [gold])
 
 
 # class Monster(Person):
