@@ -1,6 +1,7 @@
 # Implement a class to hold room information. This should have name and
 # description attributes.
 from termcolor import cprint
+import random
 
 
 class Room():
@@ -8,6 +9,7 @@ class Room():
         self.name = name
         self.description = description
         self.items = items
+        self.light = random.randrange(100)
     
     def print_room(self):
         cprint('****{}****'.format(self.name.upper()), 'red')

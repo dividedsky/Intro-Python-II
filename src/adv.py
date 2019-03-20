@@ -4,6 +4,7 @@ from player import Player
 from parser import parser
 from item import Torch
 from util import clear_screen
+from monster import goblin
 
 # Declare all the rooms
 

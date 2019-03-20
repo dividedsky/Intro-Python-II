@@ -24,3 +24,12 @@ class Torch(Item):
     def on_drop():
         print('It is unwise to drop your source of light')
 
+
+class Sword(Item):
+    name = 'sword'
+    description = 'It\s quite pointy'
+
+    def __init__(self, name, description):
+        super().__init__(name, description)
+        self.attack_value = 20
+        self.damage_value = 8

@@ -19,11 +19,9 @@ def parser(command, player):
     elif length == 2:
         args = command.split()
         verb = args[0]
+        item = args[1]
         # pick up item
         if (verb == 'get' or verb == 'take'):
-            item = args[1]
             player.get_item(item)
         elif verb == 'drop':
-            item = args[1]
             player.drop_item(item)
-
