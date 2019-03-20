@@ -8,15 +8,20 @@ class Person():
         self.defense = defense
         self.hitpoints = hitpoints
 
+    def __del__(self):
+        print('deleted')
+
     def attack(self, defender):
         dmg = random.randrange(self.att)
         dmg -= defender.defense
         defender.takedamage(dmg)
+        return dmg
 
     def takedamage(self, dmg):
         self.hitpoints -= dmg
         if self.hitpoints <= 0:
             self.die()
+            return
 
     def die(self):
         print(f'{self.name} has been defeated!')

@@ -17,11 +17,15 @@ def parser(command, player):
 
     # complex commands
     elif length == 2:
+        print(command)
         args = command.split()
         verb = args[0]
-        item = args[1]
+        noun = args[1]
         # pick up item
         if (verb == 'get' or verb == 'take'):
-            player.get_item(item)
+            player.get_item(noun)
         elif verb == 'drop':
-            player.drop_item(item)
+            player.drop_item(noun)
+        elif verb == 'attack':
+            player.fight(noun)
+

@@ -1,13 +1,14 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
 import sys
+import time
 from person import Person
 from termcolor import cprint
 
 
 class Player(Person):
     def __init__(self, room, inventory=[]):
-        super().__init__('you', 10, 2, 50) # att, def, hp
+        super().__init__('you', 10, 2, 50)   # att, def, hp
         self.room = room
         self.inventory = inventory
         self.new_room = True
@@ -51,6 +52,28 @@ class Player(Person):
                 i.on_drop()
         if not dropped:
             cprint(f'You can\'t drop what you never had...', 'red')
+
+    def fight(self, defender):
+        found = False
+        for monster in self.room.monsters:
+            if monster.name == defender:
+                found = True
+                defender = monster
+                while self.hitpoints > 0 and defender.hitpoints > 0:
+                    dmg = self.attack(defender)
+                    print(f'{self.name} attack for {dmg} points of damage!')
+                    if defender.hitpoints <= 0:
+                        self.room.monsters.remove(defender)
+                        del defender
+                        break
+                    time.sleep(1)
+                    dmg = defender.attack(self)
+                    print(f'{defender.name} attacks for {dmg} points of damage!')
+                    if self.hitpoints <= 0:
+                        break
+                    time.sleep(1)
+        if not found:
+            print(f'There is no {defender} here')
 
     def die(self):
         print('You have suffered yet another stupid death.')
