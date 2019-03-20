@@ -2,11 +2,12 @@ import random
 
 
 class Person():
-    def __init__(self, name, att, defense, hitpoints):
+    def __init__(self, name, att, defense, hitpoints, inventory=[]):
         self.name = name
         self.att = att
         self.defense = defense
         self.hitpoints = hitpoints
+        self.inventory = inventory
 
     def __del__(self):
         print('deleted')

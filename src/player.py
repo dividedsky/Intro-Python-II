@@ -7,10 +7,9 @@ from termcolor import cprint
 
 
 class Player(Person):
-    def __init__(self, room, inventory=[]):
-        super().__init__('you', 10, 2, 50)   # att, def, hp
+    def __init__(self, room):
+        super().__init__("you", 10, 2, 50)  # att, def, hp
         self.room = room
-        self.inventory = inventory
         self.new_room = True
 
     def move(self, dir):
@@ -20,11 +19,18 @@ class Player(Person):
             self.room = next
             self.new_room = True
         except AttributeError:
-            cprint('You cannot go that way!', 'red')
+            cprint("You cannot go that way!", "red")
 
     def get_inv(self):
-        return self.inventory if len(self.inventory) \
-                else 'Your inventory is empty'
+        if not len(self.inventory):
+            print("Your inventory is empty")
+        else:
+            for item in self.inventory:
+                cprint(item.name, "green")
+
+    def get_status(self):
+        print(f"Hitpoints: {self.hitpoints}")
+        print(f"attack: {self.att}")
 
     def get_item(self, item):
         found = False
@@ -34,11 +40,10 @@ class Player(Person):
                 self.room.items.remove(i)
                 self.inventory.append(i)
                 found = True
-                cprint(f'You pick up the {i.name} '
-                       'and stuff it in your sack', 'green')
-                i.on_take()
+                cprint(f"You pick up the {i.name} and stuff it in your sack", "green")
+                i.on_take(self)
         if not found:
-            cprint(f'I do not see a {item} here', 'red')
+            cprint(f"I do not see a {item} here", "red")
 
     def drop_item(self, item):
         dropped = False
@@ -47,11 +52,12 @@ class Player(Person):
                 self.room.items.append(i)
                 self.inventory.remove(i)
                 dropped = True
-                cprint(f'You have dropped {i.name}.' 
-                       'Hope you won\'t need that!', 'yellow')
+                cprint(
+                    f"You have dropped {i.name}. Hope you won't need that!", "yellow"
+                )
                 i.on_drop()
         if not dropped:
-            cprint(f'You can\'t drop what you never had...', 'red')
+            cprint(f"You can't drop what you never had...", "red")
 
     def fight(self, defender):
         found = False
@@ -61,22 +67,30 @@ class Player(Person):
                 defender = monster
                 while self.hitpoints > 0 and defender.hitpoints > 0:
                     dmg = self.attack(defender)
-                    print(f'{self.name} attack for {dmg} points of damage!')
-                    if defender.hitpoints <= 0:
-                        self.room.monsters.remove(defender)
-                        del defender
-                        break
+                    if dmg > 0:
+                        print(f"{self.name} attack for {dmg} points of damage!")
+                        if defender.hitpoints <= 0:
+                            self.room.monsters.remove(defender)
+                            self.room.items.extend(defender.inventory)
+                            for item in defender.inventory:
+                                cprint(f"{defender.name} drops {item.name}", "yellow")
+                            del defender
+                            break
+                    else:
+                        print(f"{self.name} swing wildly and miss {defender.name}!")
                     time.sleep(1)
                     dmg = defender.attack(self)
-                    print(f'{defender.name} attacks for {dmg} points of damage!')
-                    if self.hitpoints <= 0:
-                        break
+                    if dmg > 0:
+                        print(f"{defender.name} attacks for {dmg} points of damage!")
+                        if self.hitpoints <= 0:
+                            break
+                    else:
+                        print(f"{defender.name} misses!")
                     time.sleep(1)
         if not found:
-            print(f'There is no {defender} here')
+            print(f"There is no {defender} here")
 
     def die(self):
-        print('You have suffered yet another stupid death.')
-        print('Please play again.')
+        print("You have suffered yet another stupid death.")
+        print("Please play again.")
         sys.exit()
-        

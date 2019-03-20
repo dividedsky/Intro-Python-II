@@ -1,8 +1,9 @@
 import random
 from person import Person
+from item import Sword
 
 
-goblin = Person('goblin', 8, 1, 30)
+goblin = Person("goblin", 8, 1, 30, [Sword])
 
 
 # class Monster(Person):
@@ -19,4 +20,3 @@ goblin = Person('goblin', 8, 1, 30)
 
 #     def die(self):
 #         print(f'{self.name} is defeated!')
-
