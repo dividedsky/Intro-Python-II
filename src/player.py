@@ -40,7 +40,7 @@ class Player(Person):
                 self.room.items.remove(i)
                 self.inventory.append(i)
                 found = True
-                cprint(f"You pick up the {i.name} and stuff it in your sack", "green")
+                # cprint(f"You pick up the {i.name} and stuff it in your sack", "green")
                 i.on_take(self)
         if not found:
             cprint(f"I do not see a {item} here", "red")
@@ -68,7 +68,9 @@ class Player(Person):
                 while self.hitpoints > 0 and defender.hitpoints > 0:
                     dmg = self.attack(defender)
                     if dmg > 0:
-                        print(f"{self.name} attack for {dmg} points of damage!")
+                        cprint(
+                            f"{self.name} attack for {dmg} points of damage!", "green"
+                        )
                         if defender.hitpoints <= 0:
                             self.room.monsters.remove(defender)
                             self.room.items.extend(defender.inventory)
@@ -81,7 +83,10 @@ class Player(Person):
                     time.sleep(1)
                     dmg = defender.attack(self)
                     if dmg > 0:
-                        print(f"{defender.name} attacks for {dmg} points of damage!")
+                        cprint(
+                            f"{defender.name} attacks for {dmg} points of damage!",
+                            "red",
+                        )
                         if self.hitpoints <= 0:
                             break
                     else:

@@ -4,6 +4,7 @@ from item import Sword
 
 
 goblin = Person("goblin", 8, 1, 30, [Sword])
+goblin2 = Person("goblin", 10, 1, 40)
 
 
 # class Monster(Person):

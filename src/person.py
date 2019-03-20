@@ -1,16 +1,19 @@
 import random
 
 
-class Person():
-    def __init__(self, name, att, defense, hitpoints, inventory=[]):
+class Person:
+    def __init__(self, name, att, defense, hitpoints, inventory=None):
         self.name = name
         self.att = att
         self.defense = defense
         self.hitpoints = hitpoints
-        self.inventory = inventory
+        if inventory is None:
+            self.inventory = []
+        else:
+            self.inventory = inventory
 
     def __del__(self):
-        print('deleted')
+        print("deleted")
 
     def attack(self, defender):
         dmg = random.randrange(self.att)
@@ -24,5 +27,18 @@ class Person():
             self.die()
             return
 
+    def use_item(self, item):
+        # item is defined by name
+        print("using item")
+        print(self, item)
+        found = False
+        for i in self.inventory:
+            if i.name == item:
+                found = True
+                item = i
+                item.on_use(self)
+        if found is False:
+            print("You don't have that item")
+
     def die(self):
-        print(f'{self.name} has been defeated!')
+        print(f"{self.name} has been defeated!")

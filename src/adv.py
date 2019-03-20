@@ -2,9 +2,9 @@
 from room import Room
 from player import Player
 from parser import parser
-from item import Torch
+from item import Torch, pancake
 from util import clear_screen
-from monster import goblin
+from monster import goblin, goblin2
 
 # Declare all the rooms
 
@@ -12,13 +12,15 @@ room = {
     "outside": Room(
         "Outside Cave Entrance",
         "North of you, the cave mount beckons",
-        [Torch],
+        [Torch, pancake],
         [goblin],
     ),
     "foyer": Room(
         "Foyer",
         """Dim light filters in from the south. Dusty
 passages run north and east.""",
+        [],
+        [goblin2],
     ),
     "overlook": Room(
         "Grand Overlook",

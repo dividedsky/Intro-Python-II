@@ -19,7 +19,6 @@ def parser(command, player):
 
     # complex commands
     elif length == 2:
-        print(command)
         args = command.split()
         verb = args[0]
         noun = args[1]
@@ -30,6 +29,8 @@ def parser(command, player):
             player.drop_item(noun)
         elif verb == "attack":
             player.fight(noun)
+        elif verb == "eat":
+            player.use_item(noun)
 
     else:
         print("I don't understand what you want to do.")
