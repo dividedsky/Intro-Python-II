@@ -11,6 +11,7 @@ class Player(Person):
         super().__init__("you", 10, 2, 50)  # att, def, hp
         self.room = room
         self.new_room = True
+        self.has_won = False
 
     def move(self, dir):
         try:
@@ -18,6 +19,9 @@ class Player(Person):
             # print('next:', next)
             self.room = next
             self.new_room = True
+            if self.room.name == "Cave Exit":
+                print("has won")
+                self.has_won = True
         except AttributeError:
             cprint("You cannot go that way!", "red")
 

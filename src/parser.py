@@ -36,7 +36,7 @@ def parser(command, player):
             player.get_item(noun)
         elif verb == "drop":
             player.drop_item(noun)
-        elif verb == "attack":
+        elif verb == "attack" or verb == "kill":
             player.fight(noun)
         elif verb == "eat" or verb == "use":
             player.use_item(noun)

@@ -12,9 +12,6 @@ class Person:
         else:
             self.inventory = inventory
 
-    def __del__(self):
-        print("deleted")
-
     def attack(self, defender):
         dmg = random.randrange(self.att)
         dmg -= defender.defense

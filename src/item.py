@@ -6,6 +6,8 @@ exit = Room(
     "Cave Exit",
     """
     You have managed to escape the cave!
+    You shall live forever in the heart of the
+    developer who made this meager game.
     """,
 )
 
@@ -67,7 +69,7 @@ class Armor(Item):
 
     def on_take(self, player):
         player.defense += self.armor_class
-        cprint(f"You eqip the {self.name} and feel more robust", "green")
+        cprint(f"You equip the {self.name} and feel more robust", "green")
 
 
 class Rope(Item):

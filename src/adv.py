@@ -6,6 +6,7 @@ from item import torch, pancake, cake, pie, shield
 from util import clear_screen
 from monster import goblin, goblin2, dragon
 from termcolor import cprint
+import sys
 
 # Declare all the rooms
 
@@ -79,6 +80,8 @@ def main_loop():
     if player.new_room:
         clear_screen()
         player.room.print_room()
+        if player.has_won is True:
+            sys.exit()
     user_input = input("$ ").lower()
     parser(user_input, player)
 
