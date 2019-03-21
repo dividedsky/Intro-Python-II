@@ -31,7 +31,6 @@ def parser(command, player):
         args = command.split()
         verb = args[0]
         noun = " ".join(args[1:])
-        print(noun)
         # pick up item
         if verb == "get" or verb == "take":
             player.get_item(noun)
@@ -41,6 +40,8 @@ def parser(command, player):
             player.fight(noun)
         elif verb == "eat" or verb == "use":
             player.use_item(noun)
+        elif verb == "look" or verb == "inspect":
+            player.inspect_item(noun)
         else:
             print("I'm not sure what you mean. Try '?' to see my limited vocabulary.")
 

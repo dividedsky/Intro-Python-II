@@ -59,6 +59,15 @@ class Player(Person):
         if not dropped:
             cprint(f"You can't drop what you never had...", "red")
 
+    def inspect_item(self, item):
+        found = False
+        for i in self.inventory:
+            if i.name == item:
+                cprint(i.description, "blue")
+                found = True
+        if not found:
+            cprint(f"You do not have {item}", "yellow")
+
     def fight(self, defender):
         found = False
         for monster in self.room.monsters:

@@ -29,8 +29,6 @@ class Person:
 
     def use_item(self, item):
         # item is defined by name
-        print("using item")
-        print(self, item)
         found = False
         for i in self.inventory:
             if i.name == item:

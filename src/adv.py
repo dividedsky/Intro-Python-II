@@ -2,9 +2,10 @@
 from room import Room
 from player import Player
 from parser import parser
-from item import Torch, pancake, cake, pie, shield
+from item import torch, pancake, cake, pie, shield
 from util import clear_screen
 from monster import goblin, goblin2, dragon
+from termcolor import cprint
 
 # Declare all the rooms
 
@@ -12,7 +13,7 @@ room = {
     "outside": Room(
         "Outside Cave Entrance",
         "North of you, the cave mount beckons",
-        [Torch, pancake],
+        [torch, pancake],
         [goblin],
     ),
     "foyer": Room(
@@ -26,7 +27,7 @@ passages run north and east.""",
         "Grand Overlook",
         """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""",
+the distance, but there is no visible way across the chasm.""",
     ),
     "narrow": Room(
         "Narrow Passage",
@@ -78,10 +79,15 @@ def main_loop():
     if player.new_room:
         clear_screen()
         player.room.print_room()
-    user_input = input("What would you like to do?\n").lower()
+    user_input = input("$ ").lower()
     parser(user_input, player)
 
 
 if __name__ == "__main__":
+    cprint(
+        "Welcome! Press Enter to begin. Input '?' at any time to see a list of commands",
+        "blue",
+    )
+    input()
     while True:
         main_loop()
