@@ -82,5 +82,6 @@ def main_loop():
     parser(user_input, player)
 
 
-while True:
-    main_loop()
+if __name__ == "__main__":
+    while True:
+        main_loop()

@@ -1,4 +1,6 @@
 # should parser be a class? just making a function for now
+import sys
+from show_help import show_help
 
 
 def parser(command, player):
@@ -14,8 +16,15 @@ def parser(command, player):
             player.room.print_room()
         elif command == "status" or command == "st":
             player.get_status()
+        elif command == "q" or command == "quit":
+            print("Bye!")
+            sys.exit()
+        elif command == "?" or command == "help":
+            show_help()
         else:
-            print(f"I do not understand the command: {command}")
+            print(
+                f"I do not understand the command: {command}. Enter '?' to see a list of commands I understand"
+            )
 
     # complex commands
     elif length >= 2:
@@ -33,7 +42,7 @@ def parser(command, player):
         elif verb == "eat":
             player.use_item(noun)
         else:
-            print("I'm not sure what you mean")
+            print("I'm not sure what you mean. Try '?' to see my limited vocabulary.")
 
     else:
         print("I don't understand what you want to do.")
