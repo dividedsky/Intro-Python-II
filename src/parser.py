@@ -39,7 +39,7 @@ def parser(command, player):
             player.drop_item(noun)
         elif verb == "attack":
             player.fight(noun)
-        elif verb == "eat":
+        elif verb == "eat" or verb == "use":
             player.use_item(noun)
         else:
             print("I'm not sure what you mean. Try '?' to see my limited vocabulary.")

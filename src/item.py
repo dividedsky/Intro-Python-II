@@ -1,4 +1,13 @@
 from termcolor import cprint
+import random
+from room import Room
+
+exit = Room(
+    "Cave Exit",
+    """
+    You have managed to escape the cave!
+    """,
+)
 
 
 class Item:
@@ -66,8 +75,34 @@ class Armor(Item):
 
     def on_take(self, player):
         player.defense += self.armor_class
-        cprint(f"You eqip the ${self.name} and feel more robust", "green")
+        cprint(f"You eqip the {self.name} and feel more robust", "green")
 
+
+class Rope(Item):
+    def __init__(self, name, description):
+        super().__init__(name, description)
+
+    def on_use(self, player):
+        if player.room.name == "Grand Overlook":
+            player.room.n_to = exit
+            player.room.description = """A steep cliff appears before you, falling
+into the darkness. Ahead to the north, a light flickers in
+the distance. Your rope is attached to the other side, and you could cross the chasm if you wished."""
+
+            print(
+                "You fling the rope across the chasm. Incrediby, it loops securely around a rock. You can now exit this simple game!"
+            )
+        else:
+            options = [
+                "You take a break and jump rope before returning to your adventure",
+                "You consider hanging yourself, but decide to move on",
+                "It's a rope! Wow.",
+            ]
+            choice = random.randrange(len(options))
+            print(options[choice])
+
+
+rope = Rope("sturdy rope", "It's a very long rope. Who knows why a dragon had it?")
 
 pancake = Food("pancake", 5, "a delicious pancake")
 cake = Food("birthday cake", 10, "this cake is not a lie")
