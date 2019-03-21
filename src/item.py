@@ -12,6 +12,9 @@ class Item:
     def on_drop(self):
         pass
 
+    def on_use(self, player):
+        pass
+
 
 class Torch(Item):
     name = "torch"
@@ -40,6 +43,9 @@ class Sword(Item):
     def on_take(player):
         player.att += 20
         cprint("You wield the sword in your hand", "green")
+
+    def on_use(self):
+        pass
 
 
 class Food(Item):

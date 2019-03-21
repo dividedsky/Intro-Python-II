@@ -32,6 +32,8 @@ def parser(command, player):
             player.fight(noun)
         elif verb == "eat":
             player.use_item(noun)
+        else:
+            print("I'm not sure what you mean")
 
     else:
         print("I don't understand what you want to do.")

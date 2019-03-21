@@ -41,8 +41,6 @@ class Player(Person):
                 self.room.items.remove(i)
                 self.inventory.append(i)
                 found = True
-                # cprint(f"You pick up the {i.name} and stuff it in your sack", "green")
-                print(i)
                 i.on_take(self)
         if not found:
             cprint(f"I do not see a {item} here", "red")
